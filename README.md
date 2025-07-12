@@ -22,7 +22,7 @@ After form submission, it uses a trained regression model to predict and display
 
 ## ⚙️ Technologies Used
 
-- **Frontend**: HTML, CSS (light pale blue), JavaScript
+- **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Python, Flask
 - **ML Stack**: Pandas, NumPy, Scikit-learn
 - **Model**: Linear Regression
