@@ -1,0 +1,20 @@
+env/
+.venv/
+venv/
+model/env/
+car_price_flask_app/.venv/
+
+.idea/
+__pycache__/
+*.py[cod]
+*.pyc
+.ipynb_checkpoints/
+Thumbs.db
+
+# Data/model files (ignore all, but allow inside model and flask app)
+*.pkl
+*.csv
+!model/*.pkl
+!model/*.csv
+!car_price_flask_app/*.pkl
+!car_price_flask_app/*.csv

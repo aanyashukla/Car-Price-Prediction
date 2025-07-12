@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function updateModels() {
+            const company = document.getElementById("company").value;
+            fetch(`/get_models/${company}`)
+                .then(response => response.json())
+                .then(models => {
+                    let modelSelect = document.getElementById("car_model");
+                    modelSelect.innerHTML = "";
+                    models.forEach(model => {
+                        let opt = document.createElement('option');
+                        opt.value = model;
+                        opt.innerHTML = model;
+                        modelSelect.appendChild(opt);
+                    });
+                });
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2>Car Price Predictor</h2>
+    <form action="/predict" method="POST">
+        <select name="company" id="company" onchange="updateModels()" required>
+            <option value="" disabled selected>Select Company</option>
+            {% for c in companies %}
+            <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="car_model" id="car_model" required>
+            <option value="" disabled selected>Select Model</option>
+        </select>
+
+        <input type="number" name="kilometers_driven" placeholder="Kilometers Driven" required>
+
+        <select name="year_of_purchase" required>
+            <option value="" disabled selected>Select Year</option>
+            {% for y in years %}
+            <option value="{{ y }}">{{ y }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="fuel_type" required>
+            <option value="" disabled selected>Select Fuel Type</option>
+            {% for f in fuel_types %}
+            <option value="{{ f }}">{{ f }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        <h3>Estimated Price: ₹ {{ prediction }}</h3>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="result" style="color:red;">
+        <h3>Error: {{ error }}</h3>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
