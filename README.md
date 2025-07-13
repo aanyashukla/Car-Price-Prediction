@@ -1,5 +1,7 @@
 # 🚗 Car Price Predictor
 
+🔗 **Live Demo**: [Try the App](https://car-price-prediction-b3do.onrender.com)
+
 A Machine Learning-based web application that predicts the **car price**.  
 Built using **Flask** and a trained **Linear Regression** model. 
 The app features a pale blue UI with dropdowns and dynamic input filtering for a clean user experience.
